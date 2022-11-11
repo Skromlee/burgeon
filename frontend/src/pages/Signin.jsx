@@ -4,7 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AiOutlineClose } from "react-icons/ai";
 import { login, reset } from "../features/auth/authSlice";
-import Spinner from "../components/home/Spinner";
+import Spinner from "../components/common/Spinner";
 
 const initailFormValue = {
     email: "",
