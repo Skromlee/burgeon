@@ -24,8 +24,12 @@ const Admin = () => {
 
     return (
         <div>
-            {/* <p>{admin.email}</p>
-            <p>{admin.role}</p> */}
+            {admin ? (
+                <>
+                    <p>{admin.email}</p>
+                    <p>{admin.role}</p>
+                </>
+            ) : null}
             <h1>Account Protected Page</h1>
             <button onClick={onLogout}>Log Out</button>
         </div>

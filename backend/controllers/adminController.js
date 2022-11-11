@@ -94,6 +94,7 @@ const loginAdmin = asyncHandler(async (req, res) => {
             _id: admin.id,
             // fullname: user.firstname + " " + user.lastname,
             email: admin.email,
+            role: admin.role,
             token: generateToken(admin._id),
         });
     } else {

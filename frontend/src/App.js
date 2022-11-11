@@ -17,7 +17,10 @@ import Faq from "./pages/user/Faq";
 import Admin from "./pages/admin/Admin";
 import AdminSignin from "./pages/admin/AdminSignin";
 import CreateParcels from "./pages/admin/CreateParcels";
-
+// admin pages => Users
+import Users from "./pages/admin/users/Users";
+import Users_Customers from "./pages/admin/users/Users_Customers.jsx";
+import Users_Employees from "./pages/admin/users/Users_Employees";
 function App() {
     return (
         <>
@@ -26,16 +29,27 @@ function App() {
                     <Route element={<HomeLayout />}>
                         <Route path="/" element={<Home />} />
                     </Route>
+                    {/* User */}
                     <Route element={<UserLayout />}>
                         <Route path="/user" element={<User />} />
                         <Route path="/user/parcels" element={<Parcels />} />
                         <Route path="/user/faq" element={<Faq />} />
                     </Route>
+                    {/* Admin */}
                     <Route element={<AdminLayout />}>
                         <Route path="/admin" element={<Admin />} />
                         <Route
                             path="/admin/createparcels"
                             element={<CreateParcels />}
+                        />
+                        <Route path="/admin/users" element={<Users />} />
+                        <Route
+                            path="/admin/users/customers"
+                            element={<Users_Customers />}
+                        />
+                        <Route
+                            path="/admin/users/employees"
+                            element={<Users_Employees />}
                         />
                     </Route>
                     <Route path="/admin/signin" element={<AdminSignin />} />
