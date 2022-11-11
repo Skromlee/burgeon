@@ -104,7 +104,7 @@ const Signup = () => {
                 </div>
                 <div>
                     <form className="space-y-8 text-xl" onSubmit={onSubmit}>
-                        <div class="relative border-b-2 my-4 focus-within:border-brightRedLight w-96">
+                        <div className="relative border-b-2 my-4 focus-within:border-brightRedLight w-96">
                             <input
                                 type="email"
                                 id="email"
@@ -115,7 +115,6 @@ const Signup = () => {
                                 onChange={onChange}
                             />
                             <label
-                                for="username"
                                 className="absolute top-0 -z-1 duration-300 origin-0"
                                 htmlFor="email"
                             >
@@ -123,7 +122,7 @@ const Signup = () => {
                             </label>
                         </div>
 
-                        <div class="relative border-b-2 my-4 focus-within:border-brightRedLight w-96">
+                        <div className="relative border-b-2 my-4 focus-within:border-brightRedLight w-96">
                             <input
                                 type="email"
                                 id="email2"
@@ -134,7 +133,6 @@ const Signup = () => {
                                 onChange={onChange}
                             />
                             <label
-                                for="username"
                                 className="absolute top-0 -z-1 duration-300 origin-0"
                                 htmlFor="email2"
                             >
@@ -142,7 +140,7 @@ const Signup = () => {
                             </label>
                         </div>
 
-                        <div class="relative border-b-2 my-4 focus-within:border-brightRedLight w-96">
+                        <div className="relative border-b-2 my-4 focus-within:border-brightRedLight w-96">
                             <input
                                 type="password"
                                 id="password"
@@ -153,7 +151,6 @@ const Signup = () => {
                                 onChange={onChange}
                             />
                             <label
-                                for="username"
                                 className="absolute top-0 -z-1 duration-300 origin-0"
                                 htmlFor="password"
                             >
@@ -161,7 +158,7 @@ const Signup = () => {
                             </label>
                         </div>
 
-                        <div class="relative border-b-2 my-4 focus-within:border-brightRedLight w-96">
+                        <div className="relative border-b-2 my-4 focus-within:border-brightRedLight w-96">
                             <input
                                 type="password"
                                 id="password2"
@@ -172,7 +169,6 @@ const Signup = () => {
                                 onChange={onChange}
                             />
                             <label
-                                for="username"
                                 className="absolute top-0 -z-1 duration-300 origin-0"
                                 htmlFor="email"
                             >

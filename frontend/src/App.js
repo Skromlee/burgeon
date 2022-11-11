@@ -16,6 +16,7 @@ import Faq from "./pages/user/Faq";
 // admin pages
 import Admin from "./pages/admin/Admin";
 import AdminSignin from "./pages/admin/AdminSignin";
+import CreateParcels from "./pages/admin/CreateParcels";
 
 function App() {
     return (
@@ -32,6 +33,10 @@ function App() {
                     </Route>
                     <Route element={<AdminLayout />}>
                         <Route path="/admin" element={<Admin />} />
+                        <Route
+                            path="/admin/createparcels"
+                            element={<CreateParcels />}
+                        />
                     </Route>
                     <Route path="/admin/signin" element={<AdminSignin />} />
                     <Route path="/signup" element={<Signup />} />

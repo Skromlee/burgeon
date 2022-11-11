@@ -22,7 +22,7 @@ const Testimonails = () => {
                             classed = classed + "hidden md:flex";
                         }
                         return (
-                            <div className={classed}>
+                            <div className={classed} key={idx}>
                                 <img
                                     src={`/images/peple/${testimonail.path}`}
                                     alt="Anisha Li Avatar"

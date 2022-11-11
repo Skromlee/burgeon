@@ -62,6 +62,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
             _id: admin.id,
             // fullname: user.firstname + " " + user.lastname,
             email: admin.email,
+            role: admin.role,
             // phone: user.phone,
             // citizen: user.citizen,
             // address: {

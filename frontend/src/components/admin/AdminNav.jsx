@@ -55,7 +55,7 @@ const AdminNav = ({ navItems }) => {
             <div>
                 {/* Logo */}
                 <Link
-                    to="/user"
+                    to="/admin"
                     className="flex items-center space-x-3 p-3 mb-10"
                 >
                     <img
