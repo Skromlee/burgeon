@@ -75,7 +75,6 @@ const CreateEmployee = () => {
     };
 
     const onSubmit = (e) => {
-        console.log("trigger");
         e.preventDefault();
 
         if (
@@ -93,7 +92,6 @@ const CreateEmployee = () => {
             !postcode ||
             !dob
         ) {
-            console.log("Error");
             toast.error("Make sure your input all fields");
         } else {
             const employeeData = {

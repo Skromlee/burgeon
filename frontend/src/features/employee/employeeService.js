@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/manages/employees";
+const API_URL = "/api/manages/employees/";
 
 // Create new employee
 const createEmployee = async (employeeData, token) => {
@@ -28,35 +28,21 @@ const getEmployees = async (token) => {
 };
 
 // Update employees data
-const updateEmployee = async (employeeId, employeeData, token) => {
-    console.log(employeeId, employeeData, token);
+const updateEmployee = async (employeeData, token) => {
+    console.log(employeeData);
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     };
-
     const response = await axios.post(
-        API_URL + employeeId,
+        API_URL + employeeData._id,
         employeeData,
         config
     );
 
     return response.data;
 };
-
-// // Delete user goal
-// const deleteGoal = async (goalId, token) => {
-//     const config = {
-//         headers: {
-//             Authorization: `Bearer ${token}`,
-//         },
-//     };
-
-//     const response = await axios.delete(API_URL + goalId, config);
-
-//     return response.data;
-// };
 
 const employeeService = {
     createEmployee,

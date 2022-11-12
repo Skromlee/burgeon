@@ -5,7 +5,6 @@ const API_URL = "/api/admin/"; // Need to create backend
 //Login user
 
 const login = async (adminData) => {
-    console.log("Login ---- " + adminData.data);
     const response = await axios.post(API_URL + "login", adminData);
 
     if (response.data) {

@@ -30,18 +30,3 @@ const useTable = (data, page, rowsPerPage) => {
 };
 
 export default useTable;
-
-// const Table = ({ data }, page, rowsPerPage) => {
-//     const [tableRange, setTableRange] = useState([]);
-//     const [slice, setSlice] = useState([]);
-
-//     useEffect(() => {
-//         const range = calculateRange(data, rowsPerPage);
-//         setTableRange([...range]);
-
-//         const slice = sliceData(data, page, rowsPerPage);
-//         setSlice([...slice]);
-//     }, [data, setTableRange, page, setSlice]);
-
-//     return { slice, range: tableRange };
-// };

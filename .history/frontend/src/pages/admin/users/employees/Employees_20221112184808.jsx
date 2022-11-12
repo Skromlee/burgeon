@@ -53,14 +53,7 @@ const Employees = () => {
     };
 
     const editHandler = (targetId) => {
-        const targetEmp = findById(targetId);
-        setId(targetId);
-        setEmp({
-            ...targetEmp,
-            dob: new Date(targetEmp.dob).toISOString().slice(0, 10),
-        });
-        editingHandler();
-        setVisibility((prev) => !prev);
+        setId(
     };
 
     const detailHandler = (targetId) => {

@@ -62,8 +62,11 @@ const Table = ({
                                         <button
                                             className={
                                                 visibility
-                                                    ? `text-slate-600 pointer-events-none`
-                                                    : `text-green-600 hover:text-slate-300`
+                                                    ? `text-slate-600 pointer-events-none transition`
+                                                    : `text-green-600 hover:text-slate-300 transition`
+                                            }
+                                            onClick={() =>
+                                                editHandlerOnClick(el._id)
                                             }
                                         >
                                             Edit
@@ -73,8 +76,8 @@ const Table = ({
                                         <button
                                             className={
                                                 visibility
-                                                    ? `text-slate-600 pointer-events-none`
-                                                    : `text-blue-600 hover:text-slate-300`
+                                                    ? `text-slate-600 pointer-events-none transition`
+                                                    : `text-blue-600 hover:text-slate-300 transition`
                                             }
                                             onClick={() =>
                                                 detailHandlerOnClick(el._id)
@@ -87,8 +90,8 @@ const Table = ({
                                         <button
                                             className={
                                                 visibility
-                                                    ? `text-slate-600 pointer-events-none`
-                                                    : `text-red-600 hover:text-slate-300`
+                                                    ? `text-slate-600 pointer-events-none transition`
+                                                    : `text-red-600 hover:text-slate-300 transition`
                                             }
                                             onClick={() =>
                                                 deleteHandlerOnClick(el._id)

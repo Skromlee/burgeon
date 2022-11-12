@@ -59,7 +59,7 @@ const Employees = () => {
             ...targetEmp,
             dob: new Date(targetEmp.dob).toISOString().slice(0, 10),
         });
-        editingHandler();
+        editingHandler;
         setVisibility((prev) => !prev);
     };
 

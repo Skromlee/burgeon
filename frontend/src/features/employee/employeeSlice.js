@@ -6,6 +6,7 @@ const initialState = {
     isError: false,
     isSuccess: false,
     isLoading: false,
+    isFinished: false,
     message: "",
 };
 
@@ -50,46 +51,29 @@ export const getEmployees = createAsyncThunk(
 // Update employee data
 export const updateEmployee = createAsyncThunk(
     "employee/update",
-    async (id, employeeData, thunkAPI) => {
-        console.log("Update SLice Trigget--------------------------");
-        console.log(id, employeeData);
+    async (employeeData, thunkAPI) => {
         try {
+            console.log("Pass and good");
+            console.log(employeeData);
             const token = thunkAPI.getState().admin.admin.token;
             return await employeeService.updateEmployee(
-                id,
+                employeeData._id,
                 employeeData,
                 token
             ); // create
         } catch (error) {
+            console.log("There are some error");
             const message =
                 (error.response &&
                     error.response.data &&
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
+            console.log(message);
             return thunkAPI.rejectWithValue(message);
         }
     }
 );
-
-// // Delete user goal
-// export const deleteGoal = createAsyncThunk(
-//     "goals/delete",
-//     async (id, thunkAPI) => {
-//         try {
-//             const token = thunkAPI.getState().auth.user.token;
-//             return await goalService.deleteGoal(id, token);
-//         } catch (error) {
-//             const message =
-//                 (error.response &&
-//                     error.response.data &&
-//                     error.response.data.message) ||
-//                 error.message ||
-//                 error.toString();
-//             return thunkAPI.rejectWithValue(message);
-//         }
-//     }
-// );
 
 export const employeeSlice = createSlice({
     name: "employee",
@@ -119,7 +103,6 @@ export const employeeSlice = createSlice({
                 state.isLoading = false;
                 state.isSuccess = true;
                 state.employee = action.payload;
-                console.log(state, "------------");
             })
             .addCase(getEmployees.rejected, (state, action) => {
                 state.isLoading = false;
@@ -128,10 +111,12 @@ export const employeeSlice = createSlice({
             })
             .addCase(updateEmployee.pending, (state) => {
                 state.isLoading = true;
+                state.isFinished = true;
             })
             .addCase(updateEmployee.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
+                state.isFinished = false;
                 state.employee = state.employee.filter(
                     (employee) => employee._id !== action.payload._id
                 );
@@ -140,6 +125,7 @@ export const employeeSlice = createSlice({
             .addCase(updateEmployee.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
+                state.isFinished = false;
                 state.message = action.payload;
             });
     },

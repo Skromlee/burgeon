@@ -53,14 +53,7 @@ const Employees = () => {
     };
 
     const editHandler = (targetId) => {
-        const targetEmp = findById(targetId);
         setId(targetId);
-        setEmp({
-            ...targetEmp,
-            dob: new Date(targetEmp.dob).toISOString().slice(0, 10),
-        });
-        editingHandler();
-        setVisibility((prev) => !prev);
     };
 
     const detailHandler = (targetId) => {
@@ -277,7 +270,7 @@ const Employees = () => {
                                             name="role"
                                             id="role"
                                             value={emp.role}
-                                            className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3 transition"
+                                            className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
                                             disabled={isEditing ? false : true}
                                             onChange={onChange}
                                         >

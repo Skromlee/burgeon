@@ -52,14 +52,13 @@ const Employees = () => {
         navigate("/admin/users/employees/create");
     };
 
-    const editHandler = (targetId) => {
         const targetEmp = findById(targetId);
         setId(targetId);
         setEmp({
             ...targetEmp,
             dob: new Date(targetEmp.dob).toISOString().slice(0, 10),
         });
-        editingHandler();
+        editingHandler;
         setVisibility((prev) => !prev);
     };
 
