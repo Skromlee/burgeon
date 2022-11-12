@@ -75,6 +75,7 @@ const Employees = () => {
 
     const deleteHandler = (targetId) => {
         setId(targetId);
+        console.log("Delete");
     };
 
     const exitHandler = () => {
