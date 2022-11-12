@@ -4,12 +4,8 @@ const {
     registerEmployee,
     getEmployees,
     updateEmployee,
-    // registerAdmin,
-    // loginAdmin,
-    // getMe,
-    // updateUser,
+    deleteEmployee,
 } = require("../controllers/manageController");
-// const { protect } = require("../middleware/authMiddleware");
 const { adminProtect } = require("../middleware/adminAuthMiddleware");
 
 // Protect Middleware goes here
@@ -18,8 +14,6 @@ const { adminProtect } = require("../middleware/adminAuthMiddleware");
 router.post("/employees", adminProtect, registerEmployee);
 router.post("/employees/:id", adminProtect, updateEmployee);
 router.get("/employees", adminProtect, getEmployees);
-// router.post("/login", loginAdmin);
-// router.get("/me", protect, getMe);
-// router.put("/:id", protect, updateUser);
+router.delete("/employees/:id", adminProtect, deleteEmployee);
 
 module.exports = router;

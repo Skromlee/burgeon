@@ -1,21 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import employeeService from "./employeeService";
+import customerService from "./customerService";
 
 const initialState = {
-    employee: [],
+    customer: [],
     isError: false,
     isSuccess: false,
     isLoading: false,
     message: "",
 };
 
-// Create new employee
-export const createEmployee = createAsyncThunk(
-    "employee/create",
-    async (employeeData, thunkAPI) => {
+// Create new customer
+export const createCustomers = createAsyncThunk(
+    "customer/create",
+    async (customerData, thunkAPI) => {
         try {
             const token = thunkAPI.getState().admin.admin.token; // use admin token to confirm
-            return await employeeService.createEmployee(employeeData, token);
+            return await customerService.createCustomer(customerData, token);
         } catch (error) {
             const message =
                 (error.response &&
@@ -28,13 +28,13 @@ export const createEmployee = createAsyncThunk(
     }
 );
 
-// Get employees data
-export const getEmployees = createAsyncThunk(
-    "employee/getAll",
+// Get customers data
+export const getCustomers = createAsyncThunk(
+    "customer/getAll",
     async (_, thunkAPI) => {
         try {
             const token = thunkAPI.getState().admin.admin.token;
-            return await employeeService.getEmployees(token);
+            return await customerService.getCustomers(token);
         } catch (error) {
             const message =
                 (error.response &&
@@ -47,13 +47,13 @@ export const getEmployees = createAsyncThunk(
     }
 );
 
-// Update employee data
-export const updateEmployee = createAsyncThunk(
-    "employee/update",
-    async (employeeData, thunkAPI) => {
+// Update customer data
+export const updateCustomer = createAsyncThunk(
+    "customer/update",
+    async (customerData, thunkAPI) => {
         try {
             const token = thunkAPI.getState().admin.admin.token;
-            return await employeeService.updateEmployee(employeeData, token); // create
+            return await customerService.updateCustomer(customerData, token); // create
         } catch (error) {
             const message =
                 (error.response &&
@@ -66,13 +66,13 @@ export const updateEmployee = createAsyncThunk(
     }
 );
 
-// Delete employee data
-export const deleteEmployee = createAsyncThunk(
-    "employee/delete",
-    async (employeeId, thunkAPI) => {
+// Delete customer data
+export const deleteCustomer = createAsyncThunk(
+    "customer/delete",
+    async (customerId, thunkAPI) => {
         try {
             const token = thunkAPI.getState().admin.admin.token;
-            return await employeeService.deleteEmployee(employeeId, token);
+            return await customerService.deleteCustomer(customerId, token);
         } catch (error) {
             const message =
                 (error.response &&
@@ -85,69 +85,69 @@ export const deleteEmployee = createAsyncThunk(
     }
 );
 
-export const employeeSlice = createSlice({
-    name: "employee",
+export const customerSlice = createSlice({
+    name: "customer",
     initialState,
     reducers: {
         reset: (state) => initialState,
     },
     extraReducers: (builder) => {
         builder
-            .addCase(createEmployee.pending, (state) => {
+            .addCase(createCustomers.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(createEmployee.fulfilled, (state, action) => {
+            .addCase(createCustomers.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.employee.push(action.payload);
+                state.customer.push(action.payload);
             })
-            .addCase(createEmployee.rejected, (state, action) => {
+            .addCase(createCustomers.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;
             })
-            .addCase(getEmployees.pending, (state) => {
+            .addCase(getCustomers.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(getEmployees.fulfilled, (state, action) => {
+            .addCase(getCustomers.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.employee = action.payload;
+                state.customer = action.payload;
             })
-            .addCase(getEmployees.rejected, (state, action) => {
+            .addCase(getCustomers.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;
             })
-            .addCase(updateEmployee.pending, (state) => {
+            .addCase(updateCustomer.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(updateEmployee.fulfilled, (state, action) => {
+            .addCase(updateCustomer.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
 
-                state.employee = state.employee.filter(
-                    (employee) => employee._id !== action.payload._id
+                state.customer = state.customer.filter(
+                    (customer) => customer._id !== action.payload._id
                 );
-                state.employee.push(action.payload);
+                state.customer.push(action.payload);
             })
-            .addCase(updateEmployee.rejected, (state, action) => {
+            .addCase(updateCustomer.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
 
                 state.message = action.payload;
             })
-            .addCase(deleteEmployee.pending, (state) => {
+            .addCase(deleteCustomer.pending, (state) => {
                 state.isLoading = true;
             })
-            .addCase(deleteEmployee.fulfilled, (state, action) => {
+            .addCase(deleteCustomer.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.isSuccess = true;
-                state.employee = state.employee.filter((employee) => {
-                    return employee._id !== action.payload.id;
+                state.customer = state.customer.filter((customer) => {
+                    return customer._id !== action.payload.id;
                 });
             })
-            .addCase(deleteEmployee.rejected, (state, action) => {
+            .addCase(deleteCustomer.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;
@@ -155,5 +155,5 @@ export const employeeSlice = createSlice({
     },
 });
 
-export const { reset } = employeeSlice.actions;
-export default employeeSlice.reducer;
+export const { reset } = customerSlice.actions;
+export default customerSlice.reducer;

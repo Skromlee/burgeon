@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { IoIosArrowBack } from "react-icons/io";
 // import { register, reset } from "../features/auth/authSlice";
 import {
     createEmployee,
@@ -390,7 +391,12 @@ const CreateEmployee = () => {
                         </div>
                     </form>
                 </div>
-                <Link to="/admin/users/employees">Back</Link>
+                <Link to="/admin/users/employees">
+                    <div className="flex flex-col w-fit items-center">
+                        <IoIosArrowBack />
+                        Back
+                    </div>
+                </Link>
             </div>
         </>
     );

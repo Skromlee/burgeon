@@ -1,12 +1,12 @@
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
-const Employee = require("../models/employeeModel");
+const Customer = require("../models/employeeModel");
 
-// @desc Register new Employee
-// @route POST /api/manages/employees
+// @desc Register new Customer
+// @route POST /api/manages/Customers
 // @access Private Only Manager
-const registerEmployee = asyncHandler(async (req, res) => {
+const registerCustomer = asyncHandler(async (req, res) => {
     const {
         email,
         password,
@@ -85,10 +85,10 @@ const registerEmployee = asyncHandler(async (req, res) => {
     }
 });
 
-// @desc Update current Employee details
-// @route POST /api/manages/employees/:id
+// @desc Update current Customer details
+// @route POST /api/manages/Customers/:id
 // @access Private Only Manager
-const updateEmployee = asyncHandler(async (req, res) => {
+const updateCustomer = asyncHandler(async (req, res) => {
     const employee = await Employee.findById(req.params.id);
 
     if (!employee) {
@@ -113,16 +113,16 @@ const updateEmployee = asyncHandler(async (req, res) => {
     res.status(200).json(updatedEmployee);
 });
 
-// @desc Get employees data
-// @route GET /api/manages/employees
+// @desc Get customers data
+// @route GET /api/manages/customers
 // @access Private only manager
 const getEmployees = asyncHandler(async (req, res) => {
     const employees = await Employee.find({}).select("-password");
     res.status(200).json(employees);
 });
 
-// @desc Delete employees
-// @route DELETE /api/manages/employees/:id
+// @desc Delete customers
+// @route DELETE /api/manages/customers/:id
 // @access Private only manager
 const deleteEmployee = asyncHandler(async (req, res) => {
     const employee = await Employee.findById(req.params.id);

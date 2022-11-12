@@ -9,7 +9,6 @@ const Admin = () => {
 
     const { admin } = useSelector((state) => state.admin);
     useEffect(() => {
-        ("useEffect");
         if (!admin) {
             navigate("/admin/signin");
         }
