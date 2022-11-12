@@ -10,16 +10,16 @@ const registerUser = asyncHandler(async (req, res) => {
     const {
         email,
         password,
-        // firstname,
-        // lastname,
-        // phone,
-        // citizen,
-        // addressNo,
-        // province,
-        // district,
-        // subdistrict,
-        // postcode,
-        // dob,
+        firstname,
+        lastname,
+        phone,
+        citizen,
+        addressNo,
+        province,
+        district,
+        subdistrict,
+        postcode,
+        dob,
     } = req.body;
 
     if (!email && !password) {
@@ -43,33 +43,32 @@ const registerUser = asyncHandler(async (req, res) => {
     const user = await User.create({
         email,
         password: hashedPassword,
-        // firstname,
-        // lastname,
-        // phone,
-        // citizen,
-        // addressNo,
-        // province,
-        // district,
-        // subdistrict,
-        // postcode,
-        // dob,
+        firstname,
+        lastname,
+        phone,
+        citizen,
+        addressNo,
+        province,
+        district,
+        subdistrict,
+        postcode,
+        dob,
     });
 
     if (user) {
         res.status(201).json({
             _id: user.id,
-            // fullname: user.firstname + " " + user.lastname,
+            firstname: user.firstname,
+            lastname: user.lastname,
             email: user.email,
-            // phone: user.phone,
-            // citizen: user.citizen,
-            // address: {
-            //     addressNo: user.addressNo,
-            //     province: user.province,
-            //     district: user.district,
-            //     subdistrict: user.subdistrict,
-            //     postcode: user.postcode,
-            // },
-            // dob: user.dob,
+            phone: user.phone,
+            citizen: user.citizen,
+            addressNo: user.addressNo,
+            province: user.province,
+            district: user.district,
+            subdistrict: user.subdistrict,
+            postcode: user.postcode,
+            dob: user.dob,
             token: generateToken(user._id),
         });
     } else {
@@ -87,7 +86,7 @@ const loginUser = asyncHandler(async (req, res) => {
     if (user && (await bcrypt.compare(password, user.password))) {
         res.json({
             _id: user.id,
-            // fullname: user.firstname + " " + user.lastname,
+            fullname: user.firstname + " " + user.lastname,
             email: user.email,
             token: generateToken(user._id),
         });

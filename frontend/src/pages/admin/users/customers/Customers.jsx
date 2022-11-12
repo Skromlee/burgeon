@@ -4,29 +4,29 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Spinner from "../../../../components/common/Spinner";
 import {
-    getEmployees,
-    updateEmployee,
-    deleteEmployee,
+    getCustomers,
+    updateCustomer,
+    deleteCustomer,
     reset,
-} from "../../../../features/employee/employeeSlice";
+} from "../../../../features/customer/customerSlice";
 
 // simple table
-import Table from "../../../../components/common/Table";
+import Table from "../../../../components/common/TableCustomers";
 import { useState } from "react";
 import DeleteDialog from "../../../../components/admin/users/employees/DeleteDialog";
 import EditDialog from "../../../../components/admin/users/employees/EditDialog";
 
-const Employees = () => {
+const Customers = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const { admin } = useSelector((state) => state.admin);
-    const { employee, isError, isLoading, message } = useSelector(
-        (state) => state.employee
+    const { customer, isError, isLoading, message } = useSelector(
+        (state) => state.customer
     );
 
     const [id, setId] = useState("");
-    const [emp, setEmp] = useState({});
+    const [cus, setCustomer] = useState({});
     const [isEditing, setEditing] = useState(false);
     const [onDelete, setOnDelete] = useState(false);
     // use to show edit banner
@@ -41,8 +41,7 @@ const Employees = () => {
             navigate("/admin/signin");
         }
 
-        dispatch(getEmployees());
-
+        dispatch(getCustomers());
         // Check for account
         return () => {
             dispatch(reset());
@@ -51,9 +50,9 @@ const Employees = () => {
 
     const handleChangePage = () => {
         dispatch(reset());
-        navigate("/admin/users/employees/create");
+        navigate("/admin/users/customers/create"); //<= chagne
     };
-
+    console.log(customer);
     const editingHandler = () => {
         setEditing((prev) => !prev);
     };
@@ -61,7 +60,7 @@ const Employees = () => {
     // update details
     const findById = (id) => {
         let targetEmp = {};
-        employee.map((eachEmp) => {
+        customer.map((eachEmp) => {
             if (eachEmp._id === id) {
                 targetEmp = eachEmp;
             }
@@ -72,7 +71,7 @@ const Employees = () => {
 
     const editHandler = (targetId) => {
         const targetEmp = findById(targetId);
-        setEmp({
+        setCustomer({
             ...targetEmp,
             dob: new Date(targetEmp.dob).toISOString().slice(0, 10),
         });
@@ -82,7 +81,7 @@ const Employees = () => {
 
     const detailHandler = (targetId) => {
         const targetEmp = findById(targetId);
-        setEmp({
+        setCustomer({
             ...targetEmp,
             dob: new Date(targetEmp.dob).toISOString().slice(0, 10),
         });
@@ -101,19 +100,19 @@ const Employees = () => {
 
     const confirmDeleteHandler = () => {
         setOnDelete(false);
-        dispatch(deleteEmployee(id));
+        dispatch(deleteCustomer(id));
     };
 
     const exitHandler = () => {
         setVisibility(false);
         setEditing(false);
         setId("");
-        setEmp({});
+        setCustomer({});
     };
 
     // use to handle input field
     const onChange = (e) => {
-        setEmp((prevState) => ({
+        setCustomer((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value,
         }));
@@ -121,7 +120,7 @@ const Employees = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        dispatch(updateEmployee(emp));
+        dispatch(updateCustomer(cus));
         setEditing(false);
     };
 
@@ -144,7 +143,7 @@ const Employees = () => {
                     editingHandler={editingHandler}
                     exitHandler={exitHandler}
                     submitHandler={submitHandler}
-                    emp={emp}
+                    emp={cus}
                     onChange={onChange}
                 />
             )}
@@ -165,11 +164,11 @@ const Employees = () => {
                     </button>
                 </div>
                 <div></div>
-                {employee.length > 0 ? (
+                {customer.length > 0 ? (
                     <div className=" table">
                         <div className=" container mx-auto ">
                             <Table
-                                data={employee}
+                                data={customer}
                                 rowsPerPage={20}
                                 onEditClick={editHandler}
                                 onDetailClick={detailHandler}
@@ -179,10 +178,10 @@ const Employees = () => {
                         </div>
                     </div>
                 ) : (
-                    <h3>You have not create any Employees</h3>
+                    <h3>You have not create any Customers</h3>
                 )}
             </div>
         </>
     );
 };
-export default Employees;
+export default Customers;

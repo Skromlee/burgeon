@@ -2,18 +2,21 @@ import { Outlet } from "react-router-dom";
 import AdminNav from "../components/admin/AdminNav";
 import { BsBoxSeam } from "react-icons/bs";
 import { AiOutlineDashboard } from "react-icons/ai";
-import { FaQuestionCircle } from "react-icons/fa";
 import { AiOutlineUsergroupAdd } from "react-icons/ai";
 
 const navItems = [
     { href: "/admin", icon: AiOutlineDashboard, label: "Dashboard" },
-    { href: "/admin/createparcels", icon: BsBoxSeam, label: "Create Parcels" },
+    { href: "/admin/createparcels", icon: BsBoxSeam, label: "Total Parcels" },
     {
-        href: "/admin/users",
+        href: "/admin/users/employees",
         icon: AiOutlineUsergroupAdd,
-        label: "User Manager",
+        label: "Emp. Manager",
     },
-    { href: "/admin/", icon: FaQuestionCircle, label: "FAQ" },
+    {
+        href: "/admin/users/customers",
+        icon: AiOutlineUsergroupAdd,
+        label: "Cus. Manager",
+    },
 ];
 
 const AdminLayout = () => {

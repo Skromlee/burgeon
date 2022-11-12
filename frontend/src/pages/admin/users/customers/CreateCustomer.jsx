@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { IoIosArrowBack } from "react-icons/io";
 // import { register, reset } from "../features/auth/authSlice";
 import {
-    createEmployee,
+    createCustomers,
     reset,
-} from "../../../../features/employee/employeeSlice";
+} from "../../../../features/customer/customerSlice";
 import Spinner from "../../../../components/common/Spinner";
 
 const initailFormValue = {
@@ -28,11 +27,9 @@ const initailFormValue = {
 
 const CreateCustomer = () => {
     const [formData, setFormData] = useState(initailFormValue);
-
     const {
         email,
         password,
-        role,
         firstname,
         lastname,
         phone,
@@ -48,8 +45,9 @@ const CreateCustomer = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    const { employee, isLoading, isError, isSuccess, message } = useSelector(
-        (state) => state.employee // Change this line
+    const { admin } = useSelector((state) => state.admin);
+    const { customer, isLoading, isError, isSuccess, message } = useSelector(
+        (state) => state.customer // Change this line
     );
 
     useEffect(() => {
@@ -57,16 +55,20 @@ const CreateCustomer = () => {
             toast.error(message);
         }
 
+        if (!admin) {
+            navigate("/admin/signin");
+        }
+
         if (isSuccess) {
             dispatch(reset());
-            navigate("/admin/users/employees/");
+            navigate("/admin/users/customers/");
         }
 
         // Check for account
         return () => {
             dispatch(reset());
         };
-    }, [employee, isError, isSuccess, navigate, message, dispatch]);
+    }, [admin, customer, isError, isSuccess, navigate, message, dispatch]);
 
     const onChange = (e) => {
         setFormData((prevState) => ({
@@ -81,7 +83,6 @@ const CreateCustomer = () => {
         if (
             !email ||
             !password ||
-            !role ||
             !firstname ||
             !lastname ||
             !phone ||
@@ -95,10 +96,9 @@ const CreateCustomer = () => {
         ) {
             toast.error("Make sure your input all fields");
         } else {
-            const employeeData = {
+            const customerData = {
                 email,
                 password,
-                role,
                 firstname,
                 lastname,
                 phone,
@@ -111,7 +111,7 @@ const CreateCustomer = () => {
                 // dob: new Date(dob),
                 dob,
             };
-            dispatch(createEmployee(employeeData));
+            dispatch(createCustomers(customerData));
         }
     };
 
@@ -124,7 +124,7 @@ const CreateCustomer = () => {
             <div className="space-y-6 flex flex-col container h-[calc(100vh-104px)] mx-auto">
                 <div className="space-y-6 flex flex-col mb-10">
                     <h1 className="text-4xl md:text-5xl font-bold">
-                        Create an employee
+                        Create a customers
                     </h1>
                 </div>
 
@@ -146,7 +146,7 @@ const CreateCustomer = () => {
                                         name="email"
                                         value={email}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee email"
+                                        placeholder="Enter customer email"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -164,29 +164,9 @@ const CreateCustomer = () => {
                                         name="password"
                                         value={password}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee password"
+                                        placeholder="Enter customer password"
                                         onChange={onChange}
                                     />
-                                </div>
-
-                                {/* Role */}
-                                <div className="space-x-2 flex">
-                                    <label htmlFor="role" className="basis-1/4">
-                                        Role
-                                    </label>
-                                    <select
-                                        name="role"
-                                        id="role"
-                                        value={role}
-                                        className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        onChange={onChange}
-                                    >
-                                        <option value="Import">Import</option>
-                                        <option value="Export">Export</option>
-                                        <option value="Import Screen">
-                                            Import Screen
-                                        </option>
-                                    </select>
                                 </div>
 
                                 {/* Firstname */}
@@ -203,7 +183,7 @@ const CreateCustomer = () => {
                                         name="firstname"
                                         value={firstname}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee firstname"
+                                        placeholder="Enter customer firstname"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -221,7 +201,7 @@ const CreateCustomer = () => {
                                         name="lastname"
                                         value={lastname}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee lastname"
+                                        placeholder="Enter customer lastname"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -239,7 +219,7 @@ const CreateCustomer = () => {
                                         name="phone"
                                         value={phone}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee phone number"
+                                        placeholder="Enter customer phone number"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -257,19 +237,11 @@ const CreateCustomer = () => {
                                         name="citizen"
                                         value={citizen}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee citizen number"
+                                        placeholder="Enter customer citizen number"
                                         onChange={onChange}
                                     />
                                 </div>
                             </div>
-
-                            {/* citizen,
-                addressNo,
-                province,
-                district,
-                subdistrict,
-                postcode,
-                dob, //Care the date */}
 
                             <div className="space-y-8 md:w-1/2">
                                 {/* addressNo */}
@@ -286,7 +258,7 @@ const CreateCustomer = () => {
                                         name="addressNo"
                                         value={addressNo}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee address number"
+                                        placeholder="Enter customer address number"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -304,7 +276,7 @@ const CreateCustomer = () => {
                                         name="province"
                                         value={province}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee province"
+                                        placeholder="Enter customer province"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -323,7 +295,7 @@ const CreateCustomer = () => {
                                         name="district"
                                         value={district}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee district"
+                                        placeholder="Enter customer district"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -342,7 +314,7 @@ const CreateCustomer = () => {
                                         name="subdistrict"
                                         value={subdistrict}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee subdistrict"
+                                        placeholder="Enter customer subdistrict"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -360,7 +332,7 @@ const CreateCustomer = () => {
                                         name="postcode"
                                         value={postcode}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee postcode"
+                                        placeholder="Enter customer postcode"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -381,7 +353,7 @@ const CreateCustomer = () => {
                             </div>
                         </div>
 
-                        <div>
+                        <div className="flex justify-end">
                             <button
                                 type="submit"
                                 className="border-brightRed border-2  rounded-full p-2 px-6 text-brightRed hover:bg-brightRed hover:text-white duration-75"
@@ -391,12 +363,6 @@ const CreateCustomer = () => {
                         </div>
                     </form>
                 </div>
-                <Link to="/admin/users/employees">
-                    <div className="flex flex-col w-fit items-center">
-                        <IoIosArrowBack />
-                        Back
-                    </div>
-                </Link>
             </div>
         </>
     );

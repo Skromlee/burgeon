@@ -1,20 +1,15 @@
 import axios from "axios";
 
 const API_URL = "/api/manages/customers/";
+const USER_URL = "/api/users/";
 
-// Create new employee
-const createCustomer = async (employeeData, token) => {
-    const config = {
-        headers: {
-            Authorization: `Bearer ${token}`,
-        },
-    };
-
-    const response = await axios.post(API_URL, employeeData, config);
+// Create new employee use same route as post => user
+const createCustomer = async (userData) => {
+    const response = await axios.post(USER_URL, userData);
     return response.data;
 };
 
-// Get employees data
+// Get employees data use new route
 const getCustomers = async (token) => {
     const config = {
         headers: {
@@ -28,30 +23,26 @@ const getCustomers = async (token) => {
 };
 
 // Update employees data
-const updateCustomer = async (employeeData, token) => {
+const updateCustomer = async (userData, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     };
-    const response = await axios.post(
-        API_URL + employeeData._id,
-        employeeData,
-        config
-    );
+    const response = await axios.post(API_URL + userData._id, userData, config);
 
     return response.data;
 };
 
 //Delete employee
-const deleteCustomer = async (employeeId, token) => {
+const deleteCustomer = async (userId, token) => {
     const config = {
         headers: {
             Authorization: `Bearer ${token}`,
         },
     };
 
-    const response = await axios.delete(API_URL + employeeId, config);
+    const response = await axios.delete(API_URL + userId, config);
 
     return response.data;
 };

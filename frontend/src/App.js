@@ -24,6 +24,7 @@ import Employees from "./pages/admin/users/employees/Employees";
 import CreateEmployee from "./pages/admin/users/employees/CreateEmployees";
 // admin pages => Users => Customers
 import Customers from "./pages/admin/users/customers/Customers";
+import CreateCustomer from "./pages/admin/users/customers/CreateCustomer";
 
 function App() {
     return (
@@ -58,6 +59,10 @@ function App() {
                         <Route
                             path="/admin/users/employees/create"
                             element={<CreateEmployee />}
+                        />
+                        <Route
+                            path="/admin/users/customers/create"
+                            element={<CreateCustomer />}
                         />
                     </Route>
                     <Route path="/admin/signin" element={<AdminSignin />} />

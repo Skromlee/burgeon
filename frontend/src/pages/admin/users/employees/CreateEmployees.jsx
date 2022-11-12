@@ -47,7 +47,7 @@ const CreateEmployee = () => {
 
     const navigate = useNavigate();
     const dispatch = useDispatch();
-
+    const { admin } = useSelector((state) => state.admin);
     const { employee, isLoading, isError, isSuccess, message } = useSelector(
         (state) => state.employee // Change this line
     );
@@ -55,6 +55,10 @@ const CreateEmployee = () => {
     useEffect(() => {
         if (isError) {
             toast.error(message);
+        }
+
+        if (!admin) {
+            navigate("/admin/signin");
         }
 
         if (isSuccess) {
@@ -66,7 +70,7 @@ const CreateEmployee = () => {
         return () => {
             dispatch(reset());
         };
-    }, [employee, isError, isSuccess, navigate, message, dispatch]);
+    }, [admin, employee, isError, isSuccess, navigate, message, dispatch]);
 
     const onChange = (e) => {
         setFormData((prevState) => ({
