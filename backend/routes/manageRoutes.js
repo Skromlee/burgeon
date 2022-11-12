@@ -3,6 +3,7 @@ const router = express.Router();
 const {
     registerEmployee,
     getEmployees,
+    updateEmployee,
     // registerAdmin,
     // loginAdmin,
     // getMe,
@@ -15,6 +16,7 @@ const { adminProtect } = require("../middleware/adminAuthMiddleware");
 
 // Employees
 router.post("/employees", adminProtect, registerEmployee);
+router.post("/employees/:id", adminProtect, updateEmployee);
 router.get("/employees", adminProtect, getEmployees);
 // router.post("/login", loginAdmin);
 // router.get("/me", protect, getMe);

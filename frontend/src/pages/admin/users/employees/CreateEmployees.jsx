@@ -109,7 +109,8 @@ const CreateEmployee = () => {
                 district,
                 subdistrict,
                 postcode,
-                dob: new Date(dob),
+                // dob: new Date(dob),
+                dob,
             };
             dispatch(createEmployee(employeeData));
         }
@@ -198,7 +199,7 @@ const CreateEmployee = () => {
                                         Firstname
                                     </label>
                                     <input
-                                        type="firstname"
+                                        type="text"
                                         id="firstname"
                                         name="firstname"
                                         value={firstname}
@@ -216,7 +217,7 @@ const CreateEmployee = () => {
                                         Lastname
                                     </label>
                                     <input
-                                        type="lastname"
+                                        type="text"
                                         id="lastname"
                                         name="lastname"
                                         value={lastname}
@@ -234,7 +235,7 @@ const CreateEmployee = () => {
                                         Phone
                                     </label>
                                     <input
-                                        type="phone"
+                                        type="number"
                                         id="phone"
                                         name="phone"
                                         value={phone}
@@ -252,7 +253,7 @@ const CreateEmployee = () => {
                                         Citizen
                                     </label>
                                     <input
-                                        type="citizen"
+                                        type="number"
                                         id="citizen"
                                         name="citizen"
                                         value={citizen}
@@ -281,7 +282,7 @@ const CreateEmployee = () => {
                                         Add No.
                                     </label>
                                     <input
-                                        type="addressNo"
+                                        type="text"
                                         id="addressNo"
                                         name="addressNo"
                                         value={addressNo}
@@ -299,7 +300,7 @@ const CreateEmployee = () => {
                                         Province
                                     </label>
                                     <input
-                                        type="province"
+                                        type="text"
                                         id="province"
                                         name="province"
                                         value={province}
@@ -318,7 +319,7 @@ const CreateEmployee = () => {
                                         District
                                     </label>
                                     <input
-                                        type="district"
+                                        type="text"
                                         id="district"
                                         name="district"
                                         value={district}
@@ -337,7 +338,7 @@ const CreateEmployee = () => {
                                         Sub District
                                     </label>
                                     <input
-                                        type="subdistrict"
+                                        type="text"
                                         id="subdistrict"
                                         name="subdistrict"
                                         value={subdistrict}
@@ -355,7 +356,7 @@ const CreateEmployee = () => {
                                         Postcode
                                     </label>
                                     <input
-                                        type="postcode"
+                                        type="number"
                                         id="postcode"
                                         name="postcode"
                                         value={postcode}

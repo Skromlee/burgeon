@@ -10,6 +10,7 @@ const Table = ({
     onEditClick,
     onDetailClick,
     onDeleteClick,
+    visibility,
 }) => {
     const [page, setPage] = useState(1);
     const { slice, range } = useTable(data, page, rowsPerPage);
@@ -59,9 +60,10 @@ const Table = ({
                                 <div className="flex flex-col lg:flex-row lg:space-y-0 lg:space-x-4 justify-center items-center space-y-4">
                                     <div>
                                         <button
-                                            className="text-green-600 hover:text-slate-300"
-                                            onClick={() =>
-                                                editHandlerOnClick(el._id)
+                                            className={
+                                                visibility
+                                                    ? `text-slate-600 pointer-events-none`
+                                                    : `text-green-600 hover:text-slate-300`
                                             }
                                         >
                                             Edit
@@ -69,7 +71,11 @@ const Table = ({
                                     </div>
                                     <div>
                                         <button
-                                            className="text-blue-600 hover:text-slate-300"
+                                            className={
+                                                visibility
+                                                    ? `text-slate-600 pointer-events-none`
+                                                    : `text-blue-600 hover:text-slate-300`
+                                            }
                                             onClick={() =>
                                                 detailHandlerOnClick(el._id)
                                             }
@@ -79,7 +85,11 @@ const Table = ({
                                     </div>
                                     <div>
                                         <button
-                                            className="text-red-600 hover:text-slate-300"
+                                            className={
+                                                visibility
+                                                    ? `text-slate-600 pointer-events-none`
+                                                    : `text-red-600 hover:text-slate-300`
+                                            }
                                             onClick={() =>
                                                 deleteHandlerOnClick(el._id)
                                             }

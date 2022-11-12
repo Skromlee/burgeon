@@ -47,6 +47,31 @@ export const getEmployees = createAsyncThunk(
     }
 );
 
+// Update employee data
+export const updateEmployee = createAsyncThunk(
+    "employee/update",
+    async (id, employeeData, thunkAPI) => {
+        console.log("Update SLice Trigget--------------------------");
+        console.log(id, employeeData);
+        try {
+            const token = thunkAPI.getState().admin.admin.token;
+            return await employeeService.updateEmployee(
+                id,
+                employeeData,
+                token
+            ); // create
+        } catch (error) {
+            const message =
+                (error.response &&
+                    error.response.data &&
+                    error.response.data.message) ||
+                error.message ||
+                error.toString();
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
 // // Delete user goal
 // export const deleteGoal = createAsyncThunk(
 //     "goals/delete",
@@ -97,6 +122,22 @@ export const employeeSlice = createSlice({
                 console.log(state, "------------");
             })
             .addCase(getEmployees.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload;
+            })
+            .addCase(updateEmployee.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(updateEmployee.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.employee = state.employee.filter(
+                    (employee) => employee._id !== action.payload._id
+                );
+                state.employee.push(action.payload);
+            })
+            .addCase(updateEmployee.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload;

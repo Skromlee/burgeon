@@ -7,7 +7,6 @@ const Employee = require("../models/employeeModel");
 // @route POST /api/manages/employees
 // @access Private Only Manager
 const registerEmployee = asyncHandler(async (req, res) => {
-    console.log(req.body, "register");
     const {
         email,
         password,
@@ -25,7 +24,6 @@ const registerEmployee = asyncHandler(async (req, res) => {
     } = req.body;
 
     if (!email && !password) {
-        console.log("Please add all required fields");
         res.status(400);
         throw new Error("Please add all required fields");
     }
@@ -63,7 +61,6 @@ const registerEmployee = asyncHandler(async (req, res) => {
         postcode,
         dob,
     });
-    console.log(employee, "Finish add employees");
     if (employee) {
         res.status(201).json({
             _id: employee.id,
@@ -88,11 +85,39 @@ const registerEmployee = asyncHandler(async (req, res) => {
     }
 });
 
+// @desc Update current Employee details
+// @route POST /api/manages/employees/:id
+// @access Private Only Manager
+const updateEmployee = asyncHandler(async (req, res) => {
+    console.log("Update Request");
+    const employee = await Employee.findById(req.params.id);
+
+    if (!employee) {
+        res.status(400);
+        throw new Error("Employee not found");
+    }
+
+    // Check for admin
+    if (!req.admin) {
+        res.status(401);
+        throw new Error("Not authorized");
+    }
+
+    const updatedEmployee = await Employee.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        {
+            new: true,
+        }
+    );
+
+    res.status(200).json(updatedEmployee);
+});
+
 // @desc Get employees data
 // @route GET /api/manages/employees
 // @access Private only manager
 const getEmployees = asyncHandler(async (req, res) => {
-    // console.log("Fetching");
     const employees = await Employee.find({}).select("-password");
     res.status(200).json(employees);
 });
@@ -124,6 +149,7 @@ const generateToken = (id) => {
 
 module.exports = {
     registerEmployee,
+    updateEmployee,
     getEmployees,
     // getMe,
     // updateUser,
