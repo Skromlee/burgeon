@@ -11,7 +11,8 @@ const createEmployee = async (employeeData, token) => {
     };
 
     const response = await axios.post(API_URL, employeeData, config);
-
+    console.log(response);
+    console.log(response.data);
     return response.data;
 };
 

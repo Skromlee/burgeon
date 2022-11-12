@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 // import { register, reset } from "../features/auth/authSlice";
 import {
@@ -12,7 +12,7 @@ import Spinner from "../../../../components/common/Spinner";
 const initailFormValue = {
     email: "",
     password: "",
-    role: "",
+    role: "Import",
     firstname: "",
     lastname: "",
     phone: "",
@@ -57,7 +57,8 @@ const CreateEmployee = () => {
         }
 
         if (isSuccess) {
-            navigate("/users/employees/");
+            dispatch(reset());
+            navigate("/admin/users/employees/");
         }
 
         // Check for account
@@ -163,7 +164,7 @@ const CreateEmployee = () => {
                                         name="password"
                                         value={password}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Password is citizen No."
+                                        placeholder="Enter employee password"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -202,7 +203,7 @@ const CreateEmployee = () => {
                                         name="firstname"
                                         value={firstname}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee email"
+                                        placeholder="Enter employee firstname"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -220,7 +221,7 @@ const CreateEmployee = () => {
                                         name="lastname"
                                         value={lastname}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee email"
+                                        placeholder="Enter employee lastname"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -238,7 +239,7 @@ const CreateEmployee = () => {
                                         name="phone"
                                         value={phone}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee email"
+                                        placeholder="Enter employee phone number"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -256,7 +257,7 @@ const CreateEmployee = () => {
                                         name="citizen"
                                         value={citizen}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee email"
+                                        placeholder="Enter employee citizen number"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -285,7 +286,7 @@ const CreateEmployee = () => {
                                         name="addressNo"
                                         value={addressNo}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee email"
+                                        placeholder="Enter employee address number"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -303,7 +304,7 @@ const CreateEmployee = () => {
                                         name="province"
                                         value={province}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Password is citizen No."
+                                        placeholder="Enter employee province"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -322,7 +323,7 @@ const CreateEmployee = () => {
                                         name="district"
                                         value={district}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Password is citizen No."
+                                        placeholder="Enter employee district"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -341,7 +342,7 @@ const CreateEmployee = () => {
                                         name="subdistrict"
                                         value={subdistrict}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee email"
+                                        placeholder="Enter employee subdistrict"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -359,7 +360,7 @@ const CreateEmployee = () => {
                                         name="postcode"
                                         value={postcode}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee email"
+                                        placeholder="Enter employee postcode"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -374,7 +375,6 @@ const CreateEmployee = () => {
                                         name="dob"
                                         value={dob}
                                         className="border-[1px] border-black rounded-md focus:outline-none px-2 basis-2/3"
-                                        placeholder="Enter employee email"
                                         onChange={onChange}
                                     />
                                 </div>
@@ -391,6 +391,7 @@ const CreateEmployee = () => {
                         </div>
                     </form>
                 </div>
+                <Link to="/admin/users/employees">Back</Link>
             </div>
         </>
     );

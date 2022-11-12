@@ -24,7 +24,6 @@ import Employees from "./pages/admin/users/employees/Employees";
 import CreateEmployee from "./pages/admin/users/employees/CreateEmployees";
 // admin pages => Users => Customers
 import Customers from "./pages/admin/users/customers/Customers";
-import EmployeeTable from "./components/admin/EmployeeTable";
 
 function App() {
     return (
@@ -59,10 +58,6 @@ function App() {
                         <Route
                             path="/admin/users/employees/create"
                             element={<CreateEmployee />}
-                        />
-                        <Route
-                            path="/admin/users/employees/table"
-                            element={<EmployeeTable />}
                         />
                     </Route>
                     <Route path="/admin/signin" element={<AdminSignin />} />
