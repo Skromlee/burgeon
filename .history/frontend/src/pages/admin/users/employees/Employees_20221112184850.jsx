@@ -108,7 +108,7 @@ const Employees = () => {
 
     const submitHandler = (e) => {
         e.preventDefault();
-        console.log(emp);
+        emp;
         dispatch(updateEmployee(emp));
     };
 

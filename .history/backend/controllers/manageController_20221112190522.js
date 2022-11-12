@@ -89,7 +89,7 @@ const registerEmployee = asyncHandler(async (req, res) => {
 // @route POST /api/manages/employees/:id
 // @access Private Only Manager
 const updateEmployee = asyncHandler(async (req, res) => {
-    ("Update Request");
+    console.log("Update Request");
     const employee = await Employee.findById(req.params.id);
 
     if (!employee) {

@@ -8,11 +8,11 @@ const Admin = () => {
     const dispatch = useDispatch();
 
     const { admin } = useSelector((state) => state.admin);
-    admin;
+    console.log(admin);
     useEffect(() => {
-        ("useEffect");
+        console.log("useEffect");
         if (!admin) {
-            ("trig");
+            console.log("trig");
             navigate("/admin/signin");
         }
     }, [admin, navigate]);

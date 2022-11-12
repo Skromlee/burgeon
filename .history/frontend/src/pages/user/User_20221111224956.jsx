@@ -11,7 +11,7 @@ const User = () => {
 
     useEffect(() => {
         if (!user) {
-            ("trig");
+            console.log("trig");
             navigate("/signin");
         }
     }, [user, navigate]);

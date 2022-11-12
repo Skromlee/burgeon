@@ -53,8 +53,8 @@ export const updateEmployee = createAsyncThunk(
     "employee/update",
     async (employeeData, thunkAPI) => {
         try {
-            ("Pass and good");
-            employeeData;
+            console.log("Pass and good");
+            console.log(employeeData);
             const token = thunkAPI.getState().admin.admin.token;
             return await employeeService.updateEmployee(
                 employeeData._id,

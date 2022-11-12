@@ -85,7 +85,7 @@ const registerAdmin = asyncHandler(async (req, res) => {
 // @route POST /api/admin/login
 // @access Public
 const loginAdmin = asyncHandler(async (req, res) => {
-    req.body;
+    console.log(req.body);
     const { email, password } = req.body;
     const admin = await Admin.findOne({ email });
     admin;

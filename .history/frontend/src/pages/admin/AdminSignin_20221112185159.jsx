@@ -36,7 +36,7 @@ const AdminSignin = () => {
     }, [admin, isError, isSuccess, message, navigate, dispatch]);
 
     const onChange = (e) => {
-        ({ [e.target.name]: e.target.value });
+        console.log({ [e.target.name]: e.target.value });
         setFormData((prevState) => ({
             ...prevState,
             [e.target.name]: e.target.value,
