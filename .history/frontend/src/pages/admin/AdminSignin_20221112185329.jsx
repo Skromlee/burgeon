@@ -53,6 +53,8 @@ const AdminSignin = () => {
             email,
             password,
         };
+        email, password;
+        userData;
         dispatch(login(userData));
     };
 

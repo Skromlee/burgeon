@@ -53,6 +53,7 @@ export const updateEmployee = createAsyncThunk(
     "employee/update",
     async (employeeData, thunkAPI) => {
         try {
+            employeeData;
             const token = thunkAPI.getState().admin.admin.token;
             return await employeeService.updateEmployee(
                 employeeData._id,
@@ -66,6 +67,7 @@ export const updateEmployee = createAsyncThunk(
                     error.response.data.message) ||
                 error.message ||
                 error.toString();
+            message;
             return thunkAPI.rejectWithValue(message);
         }
     }
