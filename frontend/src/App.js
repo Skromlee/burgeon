@@ -19,8 +19,13 @@ import AdminSignin from "./pages/admin/AdminSignin";
 import CreateParcels from "./pages/admin/CreateParcels";
 // admin pages => Users
 import Users from "./pages/admin/users/Users";
-import Users_Customers from "./pages/admin/users/Users_Customers.jsx";
-import Users_Employees from "./pages/admin/users/Users_Employees";
+// admin pages => Users => Employees
+import Employees from "./pages/admin/users/employees/Employees";
+import CreateEmployee from "./pages/admin/users/employees/CreateEmployees";
+// admin pages => Users => Customers
+import Customers from "./pages/admin/users/customers/Customers";
+import EmployeeTable from "./components/admin/EmployeeTable";
+
 function App() {
     return (
         <>
@@ -45,11 +50,19 @@ function App() {
                         <Route path="/admin/users" element={<Users />} />
                         <Route
                             path="/admin/users/customers"
-                            element={<Users_Customers />}
+                            element={<Customers />}
                         />
                         <Route
                             path="/admin/users/employees"
-                            element={<Users_Employees />}
+                            element={<Employees />}
+                        />
+                        <Route
+                            path="/admin/users/employees/create"
+                            element={<CreateEmployee />}
+                        />
+                        <Route
+                            path="/admin/users/employees/table"
+                            element={<EmployeeTable />}
                         />
                     </Route>
                     <Route path="/admin/signin" element={<AdminSignin />} />

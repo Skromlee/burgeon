@@ -13,15 +13,15 @@ const adminProtect = asyncHandler(async (req, res, next) => {
             // Get token from header
             token = req.headers.authorization.split(" ")[1];
 
-            console.log(token, process.env.JWT_ADMIN_SECRET);
+            // console.log(token, process.env.JWT_ADMIN_SECRET);
             // Verify token
             const decoded = jwt.verify(token, process.env.JWT_ADMIN_SECRET);
             // Get user from the token
-            console.log(decoded);
+            // console.log(decoded);
             req.admin = await Admin.findById(decoded.id).select("-password");
 
             if (req.admin.role !== "database administrator") {
-                console.log(req.admin.role);
+                // console.log(req.admin.role);
                 res.status(401);
                 throw new Error("Not authorized, Permission denied");
             }

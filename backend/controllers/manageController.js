@@ -7,7 +7,7 @@ const Employee = require("../models/employeeModel");
 // @route POST /api/manages/employees
 // @access Private Only Manager
 const registerEmployee = asyncHandler(async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
     const {
         email,
         password,
@@ -25,7 +25,7 @@ const registerEmployee = asyncHandler(async (req, res) => {
     } = req.body;
 
     if (!email && !password) {
-        console.log("Halo");
+        // console.log("Halo");
         res.status(400);
         throw new Error("Please add all required fields");
     }
@@ -34,11 +34,11 @@ const registerEmployee = asyncHandler(async (req, res) => {
     const userExists = await Employee.findOne({ email });
 
     if (userExists) {
-        console.log("Halo");
+        // console.log("Halo");
         res.status(400);
         throw new Error("Employee already exists");
     }
-    console.log("Halo------------------------");
+    // console.log("Halo------------------------");
     // Hash password goes here
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -88,6 +88,7 @@ const registerEmployee = asyncHandler(async (req, res) => {
 // @route GET /api/manages/employees
 // @access Private only manager
 const getEmployees = asyncHandler(async (req, res) => {
+    // console.log("Fetching");
     const employees = await Employee.find({}).select("-password");
     res.status(200).json(employees);
 });
