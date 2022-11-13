@@ -52,7 +52,7 @@ const Customers = () => {
         dispatch(reset());
         navigate("/admin/users/customers/create"); //<= chagne
     };
-    console.log(customer);
+
     const editingHandler = () => {
         setEditing((prev) => !prev);
     };

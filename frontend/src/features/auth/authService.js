@@ -17,7 +17,6 @@ const register = async (userData) => {
 //Login user
 
 const login = async (userData) => {
-    ("Login");
     const response = await axios.post(API_URL + "login", userData);
 
     if (response.data) {
@@ -32,10 +31,33 @@ const logout = () => {
     localStorage.removeItem("user");
 };
 
+// Firstlogin
+const firstLogin = async (formDetails, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    };
+    console.log(formDetails);
+    console.log(config);
+    const response = await axios.post(
+        API_URL + "firstlogin",
+        formDetails,
+        config
+    );
+
+    if (response.data) {
+        localStorage.setItem("userDetails", JSON.stringify(response.data));
+    }
+
+    return response.data;
+};
+
 const authService = {
     register,
     login,
     logout,
+    firstLogin,
 };
 
 export default authService;

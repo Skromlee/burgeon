@@ -6,8 +6,8 @@ import { toast } from "react-toastify";
 import {
     createCustomers,
     reset,
-} from "../../../../features/customer/customerSlice";
-import Spinner from "../../../../components/common/Spinner";
+} from "../../../features/customer/customerSlice";
+import Spinner from "../../../components/common/Spinner";
 
 const initailFormValue = {
     email: "",
@@ -25,7 +25,7 @@ const initailFormValue = {
     dob: "",
 };
 
-const CreateCustomer = () => {
+const CreateParcel = () => {
     const [formData, setFormData] = useState(initailFormValue);
     const {
         email,
@@ -367,4 +367,4 @@ const CreateCustomer = () => {
         </>
     );
 };
-export default CreateCustomer;
+export default CreateParcel;

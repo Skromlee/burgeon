@@ -2,21 +2,21 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import Spinner from "../../../../components/common/Spinner";
+import Spinner from "../../../components/common/Spinner";
 import {
     getCustomers,
     updateCustomer,
     deleteCustomer,
     reset,
-} from "../../../../features/customer/customerSlice";
+} from "../../../features/customer/customerSlice";
 
 // simple table
-import Table from "../../../../components/common/TableCustomers";
+import Table from "../../../components/common/TableCustomers";
 import { useState } from "react";
-import DeleteDialog from "../../../../components/admin/users/employees/DeleteDialog";
-import EditDialog from "../../../../components/admin/users/employees/EditDialog";
+import DeleteDialog from "../../../components/admin/users/employees/DeleteDialog";
+import EditDialog from "../../../components/admin/users/employees/EditDialog";
 
-const Customers = () => {
+const AdminParcels = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
@@ -150,7 +150,7 @@ const Customers = () => {
 
             <div className=" p-6 space-y-6 flex flex-col">
                 <div className=" flex justify-between">
-                    <h1 className=" text-3xl md:text-4xl">Customers Manager</h1>
+                    <h1 className=" text-3xl md:text-4xl">Parcels Manager</h1>
                     <button
                         onClick={handleChangePage}
                         className={
@@ -160,7 +160,7 @@ const Customers = () => {
                         }
                         disabled={visibility ? true : false}
                     >
-                        Create New Customers
+                        Create New Parcel
                     </button>
                 </div>
                 <div></div>
@@ -184,4 +184,4 @@ const Customers = () => {
         </>
     );
 };
-export default Customers;
+export default AdminParcels;

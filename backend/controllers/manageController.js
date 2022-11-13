@@ -4,6 +4,8 @@ const asyncHandler = require("express-async-handler");
 const Employee = require("../models/employeeModel");
 const User = require("../models/userModel");
 
+// for Admin to register new employee must have all fields
+
 // Employee controllers
 
 // @desc Register new Employee
@@ -63,6 +65,7 @@ const registerEmployee = asyncHandler(async (req, res) => {
         subdistrict,
         postcode,
         dob,
+        firstlogin,
     });
     if (employee) {
         res.status(201).json({
